@@ -55,13 +55,30 @@ class BlogCategoryRepository extends CoreRepository
      * @return LengthAwarePaginator
     */
     public function getAllWithPaginate($perPage = null){
-        $columns = ['id', 'title', 'parent_id'];
+    $columns = ['id', 'title', 'parent_id'];
+
+    $result = $this
+        ->startConditions()
+        ->select($columns)
+        ->with(['parentCategory:id,title',])
+        ->paginate($perPage);
+
+    return $result;
+}
+
+public function getCategoryTitle(){
+
+}
+
+
+    public function getAllTitles(){
+        $columns = ['id', 'title'];
 
         $result = $this
             ->startConditions()
             ->select($columns)
-            ->with(['parentCategory:id,title',])
-            ->paginate($perPage);
+            ->get();
+
 
         return $result;
     }
