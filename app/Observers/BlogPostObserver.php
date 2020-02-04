@@ -10,8 +10,11 @@ class BlogPostObserver
 
 
 
-    public function creating(){
-
+    public function creating(BlogPost $blogPost){
+        $this->setPublishedAt($blogPost);
+        $this->setSlug($blogPost);
+        $this->setHtml($blogPost);
+        $this->setUser($blogPost);
     }
 
 
@@ -54,16 +57,16 @@ class BlogPostObserver
 
     public function deleting($id){
 
-        //dd(__METHOD__, $blogPost);
-        $result = BlogPost::destroy($id);
-
-        return $result
-            ? redirect()
-                ->route('blog.admin.posts.index')
-                ->with(['success' => 'Удаление статьи прошло успешно'])
-            : back()
-                ->withErrors(['msg' => 'Ошибка удаления'])
-                ->withInput();
+//        //dd(__METHOD__, $blogPost);
+//        $result = BlogPost::destroy($id);
+//
+//        return $result
+//            ? redirect()
+//                ->route('blog.admin.posts.index')
+//                ->with(['success' => 'Удаление статьи прошло успешно'])
+//            : back()
+//                ->withErrors(['msg' => 'Ошибка удаления1'])
+//                ->withInput();
     }
 
     /**

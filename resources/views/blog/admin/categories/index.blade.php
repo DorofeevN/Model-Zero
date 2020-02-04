@@ -33,24 +33,16 @@
     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
         <tr>
-            <th>Id</th>
+            <th>№</th>
+            <th>Категория</th>
             <th>Родительская категория</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Created_at</th>
-            <th>Update_at</th>
-            <th>Deleted_at</th>
         </tr>
         </thead>
         <tfoot>
         <tr>
-            <th>Id</th>
+            <th>№</th>
+            <th>Категория</th>
             <th>Родительская категория</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Created_at</th>
-            <th>Update_at</th>
-            <th>Deleted_at</th>
         </tr>
         </tfoot>
 
@@ -65,13 +57,10 @@
         <tbody>
         <tr>
             <td>{{$item->id}}</td>
+            <td><a href="{{ route('blog.admin.categories.edit', $item->id)  }}">{{$item->title}}</a></td>
             <td @if(in_array($item->parent_id, [0,1])) style="color:#ccc" @endif>
                 {{ $item->parentTitle }} </td>
-            <td><a href="{{ route('blog.admin.categories.edit', $item->id)  }}">{{$item->title}}</a></td>
-            <td>@if(empty($item->description)) -  @elseif($item->description) @endif</td>
-            <td>@if(empty($item->created_at)) -  @elseif($item->created_at) @endif</td>
-            <td>@if(empty($item->updated_at)) -  @elseif($item->updated_at) @endif</td>
-            <td>@if(empty($item->deleted_at)) -  @elseif($item->deleted_at) @endif</td>
+
         </tr>
         </tbody>
         @endforeach

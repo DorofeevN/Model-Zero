@@ -27,8 +27,7 @@ class BlogPostRepository extends CoreRepository{
      */
     public function getAllWithPaginate($perPage){
 
-        $columns = [
-            'id', 'title', 'slug', 'is_published', 'published_at', 'user_id', 'category_id',
+        $columns = ['id','title','slug','is_published','published_at','user_id','category_id',
         ];
 
         $result = $this
@@ -85,8 +84,7 @@ class BlogPostRepository extends CoreRepository{
     }
 
     public function getPost($id){
-        $columns = [
-            'id', 'title', 'is_published', 'published_at', 'user_id', 'category_id', 'excerpt', 'content_html'
+        $columns = ['id', 'title', 'is_published', 'published_at', 'user_id', 'category_id', 'excerpt', 'content_html'
         ];
 
         $result = $this
@@ -95,7 +93,7 @@ class BlogPostRepository extends CoreRepository{
             //->with(['category', 'user'])
             ->with([
                 'user' => function ($query) {
-                    $query->select(['id', 'name']);
+                    $query->select(['id','name']);
                 },])
             ->where('id', $id)
             ->get()

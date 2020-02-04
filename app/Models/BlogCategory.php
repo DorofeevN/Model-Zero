@@ -42,10 +42,10 @@ class BlogCategory extends Model
     *@param string @valueFromDB
     * @return bool|mixed|null|string|string[]
      */
-//    public function getTitleAttribute($valueFromObject)
-//    {
-//        return mb_strtoupper($valueFromObject);
-//    }
+    public function getTitleAttribute($valueFromObject)
+    {
+        return mb_strtoupper($valueFromObject);
+    }
 
     /**Mutator
      * @return string $incomingValue

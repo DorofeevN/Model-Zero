@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Blog\Admin;
 
 use App\Http\Requests\BlogPostCreateRequest;
 use App\Http\Requests\BlogPostUpdateRequest;
+use App\Models\BlogCategory;
 use App\Models\BlogPost;
 use App\Repositories\BlogCategoryRepository;
 use App\Repositories\BlogPostRepository;
@@ -67,7 +68,7 @@ class PostController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(BlogPostCreateRequest $request, $item)
+    public function store(BlogPostCreateRequest $request)
     {
         //
         $data = $request->input();
@@ -180,11 +181,23 @@ class PostController extends BaseController
     {
         //
         $result = BlogPost::destroy($id);
+        //dd($result);
+//        return $result ? redirect()
+//            ->route('blog.admin.posts.index')
+//            ->with(['success' => 'Удаление статьи прошло успешно'])
+//            : back()
+//            ->withErrors(['msg' => 'Ошибка удаления'])
+//            ->withInput();
 
-        return $result ? redirect()
-            ->route('blog.admin.posts.index')
-            ->with(['success' => 'Удаление статьи прошло успешно']) : back()
+                if($result){
+            return redirect()
+                ->route('blog.admin.posts.index')
+                ->with(['success' => 'Удаление статьи прошло успешно']);
+            }else{
+                return back()
             ->withErrors(['msg' => 'Ошибка удаления'])
             ->withInput();
+            }
+
     }
 }

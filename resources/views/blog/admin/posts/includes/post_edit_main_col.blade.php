@@ -30,7 +30,7 @@
                 <br>
 
                 <div class="tab-content">
-                    <div class="tab-pane container active"  id="maindata" role="tabpanel">
+                    <div class="tab-pane container active" id="maindata" role="tabpanel">
 
                         <div class="form-group">
                         <label for="title">Заголовок</label>
@@ -62,7 +62,7 @@
                                 placeholder="Выберите категорию"
                                 required>
                             @foreach($categoryList as $categoryOption)
-                                <option value="{{ $categoryOption->id }}"
+                                <option value="{{$categoryOption->id}}"
                                 @if($categoryOption->id == $item->category_id) selected @endif>
                                     {{ $categoryOption->id_title }}
                                 </option>
@@ -80,8 +80,7 @@
 
                         <div class="form-group">
                         <label>Выдержка</label>
-            <textarea name="excerpt"
-                      id="excerpt"
+            <textarea name="excerpt" id="excerpt"
                       class="form-control"
                       rows="3">{{ old('excerpt', $item->excerpt) }}</textarea>
                     </div>
@@ -89,11 +88,12 @@
                         <div class="form-check">
                          <input name="is_published"
                                 type="hidden"
-                                value="1">
+                                value="0">
+
                         <input name="is_published"
                                type="checkbox"
                                class="form-check-input"
-                               value="{{ $item->is_published }}"
+                               value="1"
                                @if($item->is_published)
                                    checked="checked"
                                @endif
