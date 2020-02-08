@@ -20,7 +20,7 @@
 
                     <div class="item-entry" data-aos="zoom-in">
                         <div class="item-entry__thumb">
-                            <a href="single-standard.html" class="item-entry__thumb-link">
+                            <a href="/post/{{$categoryPost->id}}" class="item-entry__thumb-link">
                                 <img src="{{$categoryPost->cover}}"
                                     alt="{{$categoryPost->id}}">
                             </a>
@@ -34,7 +34,7 @@
                                 <h1 class="item-entry__title"><a href="/post/{{ $categoryPost->id }}">{{ $categoryPost->title }}</a></h1>
 
                             <div class="item-entry__date">
-                                <a href="single-standard.html">{{ $categoryPost->published_at }}</a>
+                                <a href="/post/{{$categoryPost->id}}">{{ $categoryPost->published_at }}</a>
                             </div>
                         </div>
                     </div> <!-- item-entry -->
@@ -44,23 +44,15 @@
             </div> <!-- end entries -->
         </div> <!-- end entries-wrap -->
 
-        <div class="row pagination-wrap">
-            <div class="col-full">
-                <nav class="pgn" data-aos="fade-up">
-                    <ul>
-                        <li><a class="pgn__prev" href="#0">Prev</a></li>
-                        <li><a class="pgn__num" href="#0">1</a></li>
-                        <li><span class="pgn__num current">2</span></li>
-                        <li><a class="pgn__num" href="#0">3</a></li>
-                        <li><a class="pgn__num" href="#0">4</a></li>
-                        <li><a class="pgn__num" href="#0">5</a></li>
-                        <li><span class="pgn__num dots">…</span></li>
-                        <li><a class="pgn__num" href="#0">8</a></li>
-                        <li><a class="pgn__next" href="#0">Next</a></li>
-                    </ul>
-                </nav>
+        @if($categoryPosts->total() > $categoryPosts->count())
+            <div class="row pagination-wrap">
+                <div class="col-full">
+                    <nav class="pgn" data-aos="fade-up">
+                        {{$categoryPosts->links()}}
+                    </nav>
+                </div>
             </div>
-        </div>
+        @endif
 
     </section> <!-- end s-content -->
 

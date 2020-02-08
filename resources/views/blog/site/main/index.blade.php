@@ -32,7 +32,7 @@
                         <div class="entry__content">
                             <span class="entry__category"><a href="#0">{{$featured->category->title}}</a></span>
 
-                            <h1><a href="/posts/{{$featured->id}}" title="">{{$featured->title}}</a></h1>
+                            <h1><a href="/post/{{$featured->id}}" title="">{{$featured->title}}</a></h1>
 
                             <div class="entry__info">
                                 <a href="#0" class="entry__profile-pic">
@@ -75,20 +75,20 @@
 
                     <div class="item-entry" data-aos="zoom-in">
                         <div class="item-entry__thumb">
-                            <a href="#" class="item-entry__thumb-link">
+                            <a href="/post/{{$post->id}}" class="item-entry__thumb-link">
                                 <img src="{{$post->cover}}" alt="{{$post->id}}">
                             </a>
                         </div>
 
                         <div class="item-entry__text">
                             <div class="item-entry__cat">
-                                <a href="{{ route('blog.site.main.index', $post->id) }}">{{ $post->category->title }}</a>
+                                <a href="/category/{{$post->category->id}}">{{ $post->category->title }}</a>
                             </div>
 
-                            <h1 class="item-entry__title"><a href="#">{{$post->title}}</a></h1>
+                            <h1 class="item-entry__title"><a href="/post/{{$post->id}}">{{$post->title}}</a></h1>
 
                             <div class="item-entry__date">
-                                <a href="#">{{$post->published_at}}</a>
+                                <a href="/post/{{$post->id}}">{{$post->published_at}}</a>
                             </div>
                         </div>
                     </div> <!-- item-entry -->
