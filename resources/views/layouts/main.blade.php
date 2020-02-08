@@ -51,25 +51,25 @@
 
         <form role="search" method="get" class="header__search-form" action="#">
             <label>
-                <span class="hide-content">Search for:</span>
+                <span class="hide-content">Поиск:</span>
                 <input type="search" class="search-field" placeholder="Type Keywords" value="" name="s" title="Search for:" autocomplete="off">
             </label>
             <input type="submit" class="search-submit" value="Search">
         </form>
 
-        <a href="#0" title="Close Search" class="header__overlay-close">Close</a>
+        <a href="#0" title="Close Search" class="header__overlay-close">Закрыть</a>
 
     </div>  <!-- end header__search -->
 
-    <a class="header__toggle-menu" href="#0" title="Menu"><span>Menu</span></a>
+    <a class="header__toggle-menu" href="#0" title="Menu"><span>Меню</span></a>
     <nav class="header__nav-wrap">
 
-        <h2 class="header__nav-heading h6">Navigate to</h2>
+        <h2 class="header__nav-heading h6">Навигация</h2>
 
         <ul class="header__nav">
-            <li class="current"><a href="/" title="">Home</a></li>
+            <li class="current"><a href="/" title="">Домашняя страница</a></li>
             <li class="has-children">
-                <a href="#0" title="">Categories</a>
+                <a href="#0" title="">Категории</a>
                 <ul class="sub-menu">
                     @foreach($categoryList as $category_title)
                         <li><a href="/category/{{ $category_title->id }}">{{ $category_title->id_title }}</a></li>

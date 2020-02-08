@@ -36,12 +36,21 @@ class GreetController extends BaseController
 
     {
         //$paginator = BlogCategory::paginate(10);
-        $recent_post_paginator = $this->blogPostRepository->getAllWithPaginate(12);
-
         $categoryList = $this->blogCategoryRepository->getForComboBox();
 
-        //dd($categories_list);
-        return view('blog.site.main.index', compact('recent_post_paginator', 'categoryList'));
+        $featured_random = $this->blogPostRepository->getFeaturedRandom(3);
+
+        $recent_post_paginator = $this->blogPostRepository->getAllWithPaginate(12);
+
+        $popular_random = $this->blogPostRepository->getPopularRandom(6);
+
+
+
+        //dd($recent_post_paginator);
+
+        //dd($featured_random);
+        return view('blog.site.main.index', compact('recent_post_paginator',
+            'categoryList', 'featured_random', 'popular_random'));
         //dd(__METHOD__);
     }
 

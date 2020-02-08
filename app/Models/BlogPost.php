@@ -36,4 +36,5 @@ class BlogPost extends Model
         //Пользователь статьи
         return $this->belongsTo(User::class);
     }
+
 }

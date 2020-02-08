@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Repositories;
-
 use App\Models\BlogPost as Model;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
@@ -27,7 +26,7 @@ class BlogPostRepository extends CoreRepository{
      */
     public function getAllWithPaginate($perPage){
 
-        $columns = ['id','title','slug','is_published','published_at','user_id','category_id',
+        $columns = ['id','title','slug','is_published','published_at','user_id','category_id','cover'
         ];
 
         $result = $this
@@ -53,8 +52,10 @@ class BlogPostRepository extends CoreRepository{
     public function getSomeWithPaginate($category_id, $quantity){
 
         $columns = [
-            'id', 'title', 'is_published', 'published_at', 'user_id', 'category_id', 'excerpt'
+            'id', 'title', 'is_published', 'published_at', 'user_id', 'category_id', 'excerpt', 'cover'
         ];
+
+
 
         $result = $this
             ->startConditions()
@@ -70,8 +71,66 @@ class BlogPostRepository extends CoreRepository{
                 'user:id,name',])
             ->paginate($quantity);
 
+//        foreach ($result as $item){
+//            $item['img'] = $placeholders[rand(0,count($placeholders))];
+//        }
+
+
         return $result;
     }
+
+    public function getFeaturedRandom($quantity){
+        $columns = [
+            'id', 'title', 'is_published', 'published_at', 'user_id', 'category_id'
+        ];
+
+        $result = $this
+            ->startConditions()
+            ->select($columns)
+            //->with(['category', 'user'])
+            ->where('is_published', 1)
+            ->with([
+                'category' => function ($query) {
+                    $query->select(['id', 'title', 'wallpaper']);
+                },
+                'user:id,name,avatar',])
+            ->inRandomOrder()
+            ->take($quantity)
+            ->get();
+
+//        foreach ($result as $item){
+//            $item['img'] = $placeholders[rand(0,count($placeholders))];
+//        }
+
+
+        return $result;
+    }
+
+    public function getPopularRandom($quantity){
+        $columns = [
+            'id', 'title', 'is_published', 'published_at', 'user_id', 'cover'
+        ];
+
+        $result = $this
+            ->startConditions()
+            ->select($columns)
+            //->with(['category', 'user'])
+            ->where('is_published', 1)
+            ->with([
+                'user:id,name',])
+            ->inRandomOrder()
+            ->take($quantity)
+            ->get();
+
+//        foreach ($result as $item){
+//            $item['img'] = $placeholders[rand(0,count($placeholders))];
+//        }
+
+
+        return $result;
+    }
+
+
 
     /**Получить модель редактирования в админке
      * @param int $id

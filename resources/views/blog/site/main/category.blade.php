@@ -21,8 +21,8 @@
                     <div class="item-entry" data-aos="zoom-in">
                         <div class="item-entry__thumb">
                             <a href="single-standard.html" class="item-entry__thumb-link">
-                                <img src="/images/thumbs/post/lamp-400.jpg"
-                                     srcset="/images/thumbs/post/lamp-400.jpg 1x, images/thumbs/post/lamp-800.jpg 2x" alt="">
+                                <img src="{{$categoryPost->cover}}"
+                                    alt="{{$categoryPost->id}}">
                             </a>
                         </div>
 
